@@ -55,7 +55,7 @@ export const HospitalMap = () => {
             longitude: 78, // Default longitude
             zoom: 10,
           }}
-          style={{ width: "100%", height: "500px" }}
+          style={{ width: "70vw", height: "500px" }}
           mapStyle="mapbox://styles/mapbox/streets-v11"
           mapboxAccessToken="pk.eyJ1IjoiaWFta2FydGhpY2siLCJhIjoiY2t4b3AwNjZ0MGtkczJub2VqMDZ6OWNrYSJ9.-FMKkHQHvHUeDEvxz2RJWQ"
         >
