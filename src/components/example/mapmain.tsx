@@ -29,7 +29,7 @@ export const HospitalForm = () => {
     lng: 0,
   });
   const [loading, setLoading] = useState(false);
-  const [Email, setEmail] = useState<string | null>(null);
+ 
   const [error, setError] = useState("");
   const router = useRouter();
 
@@ -38,18 +38,17 @@ export const HospitalForm = () => {
     setError("");
     setLoading(true);
     const email=localStorage.getItem("user");
-    console.log(email);
-    setEmail(email);
+   
     const formWithAdminEmail = {
         ...form,
-        admin_email: Email ?? "", 
+        admin_email: email ?? "", 
           };
 
     try {
       const response = await axios.post("/api/hospital", formWithAdminEmail
       );
       if (response.status === 200) {
-        router.push("/");
+        router.push("/admin/hos");
       }
     } catch (error) {
       setError("Form submission failed. Please try again later.");
