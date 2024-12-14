@@ -17,11 +17,17 @@ model Admin {
   email    String @unique
   name     String
   password String
-  Hospital String
-  Disease  Disease[]
+  Hospital_name String
+  Hospital  Hospital[]
+
   // otp       Otp @relation(fields: [otpid],references: [id])
   // otpid   Int
-  
+}
+model SuperAdmin{
+  id   Int @id @default(autoincrement())
+ Name  String
+ Email   String
+ password String
 }
 model User{
   id    Int   @id @default(autoincrement())
@@ -29,10 +35,14 @@ model User{
   name    String 
   password  String
   Pincode    String 
+  Disease     String
+  Bed       Int
+  Room_no  Int
+  Doctor   Int
+  Payment   Int
+  Online_meet  Int
  }
- 
-
-model Otp {
+ model Otp {
   id      Int    @id @default(autoincrement())
   otp     String
   email   String  
@@ -54,10 +64,75 @@ model Disease{
   lng                Float
   File                String?
   Pincode             String
-  admin       Admin @relation(fields: [adminid],references: [id])
+  Hospital       Hospital @relation(fields: [hospitalid],references: [id])
   // user         User  @relation(fields: [userid],references: [id])
   // userid       Int
-  adminid     Int       
+  hospitalid     Int       
+}
+model Patient{
+  id    Int   @id @default(autoincrement())
+  email  String  @unique
+  name    String 
+  password  String
+  Pincode    String 
+  Disease     String
+  Bed       Int
+  Room_no  Int
+  Doctor   Doctor @relation(fields: [doctorid],references: [id])
+  doctorid Int
+  Today_appoinment Today_appoinment @relation(fields: [today_appointment_id],references: [id])
+  today_appointment_id Int
+  Payment   Int
+  Online_meet  Int
+ }
+model Doctor{
+  id  Int @id   @default(autoincrement())
+  Doctor_email String
+  Field   String
+  contact_no  String
+  Salary      Int
+  Salary_credited Int
+  Patient        Patient[]
+  Today_appoinment  Today_appoinment[]
+  Online_meet  String
+}
+model Today_appoinment{
+  id      Int @id   @default(autoincrement())
+  Doctor   Doctor @relation(fields: [doctorid],references: [id])
+  doctorid  Int
+  Patient   Patient[]
+  Time       Int
+}
+model Staff{
+  id  Int @id @default(autoincrement())
+  Staff_email String
+  Patient String
+  contact_no String
+  Doctor   String
+  Salary    Int
+  Salart_Pending Boolean
+}
+model  Beds{
+  id Int @id @default(autoincrement())
+  bed Int
+  Room  Room[] 
+}
+model Room{
+  id Int @id @default(autoincrement())
+  number Int
+  bed    Beds @relation(fields: [bedid],references: [id])
+  bedid  Int
+}
+model Hospital{
+  id Int @id @default(autoincrement())
+  Name String
+  Address String
+  Doctors Int
+  Staff  Int
+  Facilites String
+  Admin    Admin @relation(fields: [adminid],references: [id])
+  adminid  Int
+  Diseases   Disease[]
 }
 
 

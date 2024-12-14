@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { error } from "console";
 
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -93,4 +94,29 @@ export const patientmapuser=async(req:NextRequest)=>{
     } catch (error) {
         console.log("Error fetching all the users",error);
     }
+}
+export const hospitalform=async(req:NextRequest)=>{
+    try{const body = await req.json();
+   const{Name,Address,Doctors,Staff,Facilites,adminid}=body
+   if(!Name||!Address||!Doctors||!Staff||!Facilites||!adminid){
+    return NextResponse.json(
+        {error:"All field are reqiured"},
+        {status:422},
+    )
+   }
+   const hospital =await prisma.hospital.create({
+    data:{
+        Name,
+        Address,
+        Doctors,
+        Staff,
+        Facilites,
+        id:adminid
+    }
+   })
+   return NextResponse.json({hospital},{status:200});}
+   catch{
+    console.error("Error creating disease:", error);
+    return NextResponse.json({ error:"Internal service error" }, { status: 500 });
+   }
 }

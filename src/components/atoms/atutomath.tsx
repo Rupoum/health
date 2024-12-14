@@ -3,7 +3,7 @@ import { atom } from "recoil";
 
 interface AuthState {
   isAuthenticated: boolean;
-  user: string;  // Replace `any` with the actual type of your user object if available
+  user: string;  
   token: string | null;
   role:string| null
 }

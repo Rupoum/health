@@ -18,7 +18,7 @@ type LoginFormInputs = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter(); // Move useRouter here
+  const router = useRouter();
 
   const {
     register,
@@ -31,7 +31,7 @@ export default function LoginForm() {
   const onSubmit = async (data: LoginFormInputs) => {
     setError(null);
     try {
-      const response = await axios.post("/api/userlogin", data); // Use relative URL
+      const response = await axios.post("/api/userlogin", data); 
       if (response.status === 200) {
         router.push("/"); // Use router after login success
         const {token}=response.data;

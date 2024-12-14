@@ -2,7 +2,6 @@ import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import otp from 'otp-generator';
-
 import nodemailer from 'nodemailer';
 import { NextApiResponse } from 'next';
 import dotenv from 'dotenv';
@@ -28,7 +27,6 @@ export const Register = async (req:Request, res: NextApiResponse) => {
     if (!email ) {
       return NextResponse.json({ message: 'Please provide all required fields email' }, { status: 400 });
     }
-
     const existingUser = await prisma.admin.findUnique({
       where: { email },
     });

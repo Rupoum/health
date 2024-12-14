@@ -34,4 +34,16 @@
   .mapboxgl-popup-content {
     @apply shadow-lg p-0 rounded-xl overflow-hidden bg-white/20 backdrop-blur-sm border-x border-t border-white !important;
   }
+  .search-box {
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Ensures it stays on top of the map */
+    background: white;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
   

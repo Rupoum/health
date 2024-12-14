@@ -26,8 +26,9 @@ export function SearchPlace({
   return (
     <div className="relative">
       <Input
-        className="bg-black"
+        className="bg-white"
         placeholder="Search place..."
+      
         value={value}
         onChange={(e) => {
           setOpen(e.target.value.length > 0)
